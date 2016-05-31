@@ -2,9 +2,7 @@
 package org.fogbeam.example.opennlp;
 
 
-import java.io.BufferedReader;
 import java.io.FileInputStream;
-import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.file.Files;
@@ -15,9 +13,21 @@ import opennlp.tools.tokenize.Tokenizer;
 import opennlp.tools.tokenize.TokenizerME;
 import opennlp.tools.tokenize.TokenizerModel;
 
-
+/**
+ * Definición de la clase TokenizerMain
+ * Esta clase permite leer una cadena de texto en inglés para procesarlo y 
+ * extraer los tokens que contenga para posteriormente mostrarlos por pantalla
+ * @author leonor
+ * @version 1.1.1
+ */
 public class TokenizerMain{
 
+	/**
+	 * Método principal que lee el fichero y obtiene la cadena de texto para extraer sus tokens.
+	 * @param args
+	 * @throws Exception
+	 * @return No devuelve nada (void)
+	 */
 	public static void main( String[] args ) throws Exception{
 		
 		// the model we trained
