@@ -18,7 +18,32 @@ public class TokenizerMain
 		
 		// the provided model
 		// InputStream modelIn = new FileInputStream( "models/en-token.bin" );
+		BufferedReader br = new BufferedReader(new FileReader("prueba.txt"));
+		try {
+		    StringBuilder sb = new StringBuilder();
+		    String line = br.readLine();
 
+		    List<String> wordList = new ArrayList<String>();
+		    
+		    while (line != null) {
+		    	StringTokenizer stringTokenizer = new StringTokenizer(line);
+                while(stringTokenizer.hasMoreTokens()){
+                	String word= stringTokenizer.nextToken();
+                	if(!wordList.contains(word)){
+                		wordList.add(word);
+                	}	
+		            line = br.readLine();
+		        }
+		    }
+		    
+		    for (String word : wordList) {
+				System.out.println("Word: " + word);
+			}
+		}catch( RuntimeException e){
+			System.out.println("Al leer el fichero se ha producido la siguiente excepción" + e.getMessage());
+		} finally {
+		    br.close();
+		}
 		
 		// the model we trained
 		InputStream modelIn = new FileInputStream( "models/en-token.model" );
