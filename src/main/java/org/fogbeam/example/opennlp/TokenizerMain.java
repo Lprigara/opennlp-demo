@@ -2,39 +2,23 @@
 package org.fogbeam.example.opennlp;
 
 
+import java.io.BufferedReader;
 import java.io.FileInputStream;
+import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStream;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 
 import opennlp.tools.tokenize.Tokenizer;
 import opennlp.tools.tokenize.TokenizerME;
 import opennlp.tools.tokenize.TokenizerModel;
 
 
-public class TokenizerMain
-{
-	public static void main( String[] args ) throws Exception
-	{
-		
-		public String[] readFile(String file){ 
-			BufferedReader br = new BufferedReader(new FileReader(file));
-			try {
-			    StringBuilder sb = new StringBuilder();
-		   	    String line = br.readLine();
+public class TokenizerMain{
 
-		   	     String[] wordList;
-		    
-		    	     while (line != null) {
-				wordList += line.split(" ");
-	            		line = br.readLine();
-		    	     }
-			}catch( RuntimeException e){
-				System.out.println("Al leer el fichero se ha producido la siguiente excepción" + e.getMessage());
-			} 
-
-			br.close();
-			return wordList;
-		}
+	public static void main( String[] args ) throws Exception{
 		
 		// the model we trained
 		InputStream modelIn = new FileInputStream( "models/en-token.model" );
@@ -45,7 +29,13 @@ public class TokenizerMain
 		
 			Tokenizer tokenizer = new TokenizerME(model);
 			
-			String[] tokens = tokenizer.tokenize(readFile("prueba.txt"));
+			Path path = Paths.get("prueba.txt");
+			
+			byte[] wikiArray = Files.readAllBytes(path);
+
+		    String wikiString = new String(wikiArray, "ISO-8859-1");
+		      
+			String[] tokens = tokenizer.tokenize(wikiString);
 			
 			for( String token : tokens )
 			{
