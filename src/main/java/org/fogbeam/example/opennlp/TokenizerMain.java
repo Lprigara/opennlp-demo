@@ -27,18 +27,18 @@ public class TokenizerMain
 		    
 		    while (line != null) {
 		    	StringTokenizer stringTokenizer = new StringTokenizer(line);
-                while(stringTokenizer.hasMoreTokens()){
-                	String word= stringTokenizer.nextToken();
-                	if(!wordList.contains(word)){
-                		wordList.add(word);
-                	}	
-		            line = br.readLine();
+	                while(stringTokenizer.hasMoreTokens()){
+                		String word= stringTokenizer.nextToken();
+                		if(!wordList.contains(word)){
+                			wordList.add(word);
+                		}	
+		            	line = br.readLine();
 		        }
 		    }
 		    
 		    for (String word : wordList) {
-				System.out.println("Word: " + word);
-			}
+			System.out.println("Word: " + word);
+		    }
 		}catch( RuntimeException e){
 			System.out.println("Al leer el fichero se ha producido la siguiente excepción" + e.getMessage());
 		} finally {
