@@ -16,30 +16,23 @@ public class TokenizerMain
 	public static void main( String[] args ) throws Exception
 	{
 		
-		public String readFile(String file){ 
+		public String[] readFile(String file){ 
 			BufferedReader br = new BufferedReader(new FileReader(file));
 			try {
 			    StringBuilder sb = new StringBuilder();
 		   	    String line = br.readLine();
 
-		   	     List<String> wordList = new ArrayList<String>();
+		   	     String[] wordList;
 		    
 		    	     while (line != null) {
-		    	     	StringTokenizer stringTokenizer = new StringTokenizer(line);
-	                	while(stringTokenizer.hasMoreTokens()){
-                			String word= stringTokenizer.nextToken();
-                			if(!wordList.contains(word)){
-                				wordList.add(word);
-                			}	
-		            		line = br.readLine();
-		        	}
+				wordList += line.split(" ");
+	            		line = br.readLine();
 		    	     }
 			}catch( RuntimeException e){
 				System.out.println("Al leer el fichero se ha producido la siguiente excepción" + e.getMessage());
-			} finally {
-			    br.close();
-			    return wordList;
-			}
+			} 
+
+			br.close();
 			return wordList;
 		}
 		
@@ -52,7 +45,6 @@ public class TokenizerMain
 		
 			Tokenizer tokenizer = new TokenizerME(model);
 			
-				/* note what happens with the "three depending on which model you use */
 			String[] tokens = tokenizer.tokenize(readFile("prueba.txt"));
 			
 			for( String token : tokens )
