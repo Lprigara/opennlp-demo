@@ -14,8 +14,8 @@ import opennlp.tools.tokenize.TokenizerME;
 import opennlp.tools.tokenize.TokenizerModel;
 
 /**
- * Definición de la clase TokenizerMain
- * Esta clase permite leer una cadena de texto en inglés para procesarlo y 
+ * Definicion de la clase TokenizerMain
+ * Esta clase permite leer una cadena de texto en ingles para procesarlo y 
  * extraer los tokens que contenga para posteriormente mostrarlos por pantalla
  * @author leonor
  * @version 1.1.1
@@ -23,7 +23,7 @@ import opennlp.tools.tokenize.TokenizerModel;
 public class TokenizerMain{
 
 	/**
-	 * Método principal que lee el fichero y obtiene la cadena de texto para extraer sus tokens.
+	 * Metodo principal que lee el fichero y obtiene la cadena de texto para extraer sus tokens.
 	 * @param args
 	 * @throws Exception
 	 * @return No devuelve nada (void)
