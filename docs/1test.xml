@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?><testrun name="TokenizerTest" project="nlp-demo1" tests="2" started="2" failures="0" errors="0" ignored="0">
+  <testsuite name="org.fogbean.example.opennlp.test.TokenizerTest" time="0.12">
+    <testcase name="testTokensNotEquals" classname="org.fogbean.example.opennlp.test.TokenizerTest" time="0.095"/>
+    <testcase name="testTokensEquals" classname="org.fogbean.example.opennlp.test.TokenizerTest" time="0.023"/>
+  </testsuite>
+</testrun>
