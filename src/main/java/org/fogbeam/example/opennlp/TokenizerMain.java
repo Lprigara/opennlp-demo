@@ -12,6 +12,7 @@ import java.nio.file.Paths;
 import opennlp.tools.tokenize.Tokenizer;
 import opennlp.tools.tokenize.TokenizerME;
 import opennlp.tools.tokenize.TokenizerModel;
+import opennlp.tools.util.InvalidFormatException;
 
 /**
  * Definicion de la clase TokenizerMain
@@ -23,6 +24,23 @@ import opennlp.tools.tokenize.TokenizerModel;
 public class TokenizerMain{
 
 	/**
+	 * @param path  ruta del fichero
+	 * @return cadena de bytes en String y con la codificación ISO
+	 * @throws IOException
+	 */
+	public static String getStringListOfFile(Path path) throws IOException{
+		byte[] wikiArray = Files.readAllBytes(path);
+	    return new String(wikiArray, "ISO-8859-1");
+	}
+	
+	public static Tokenizer getTokenizer(String model) throws InvalidFormatException, IOException{
+		InputStream modelIn = new FileInputStream(model);
+		TokenizerModel tokenizerModel = new TokenizerModel( modelIn );
+		
+		return new TokenizerME(tokenizerModel);
+	}
+	
+	/**
 	 * Metodo principal que lee el fichero y obtiene la cadena de texto para extraer sus tokens.
 	 * @param args
 	 * @throws Exception
@@ -30,22 +48,13 @@ public class TokenizerMain{
 	 */
 	public static void main( String[] args ) throws Exception{
 		
-		// the model we trained
-		InputStream modelIn = new FileInputStream( "models/en-token.model" );
-		
 		try
 		{
-			TokenizerModel model = new TokenizerModel( modelIn );
-		
-			Tokenizer tokenizer = new TokenizerME(model);
+			Tokenizer tokenizer = getTokenizer("models/en-token.model");
 			
 			Path path = Paths.get("prueba.txt");
 			
-			byte[] wikiArray = Files.readAllBytes(path);
-
-		    String wikiString = new String(wikiArray, "ISO-8859-1");
-		      
-			String[] tokens = tokenizer.tokenize(wikiString);
+			String[] tokens = tokenizer.tokenize(getStringListOfFile(path));
 			
 			for( String token : tokens )
 			{
@@ -56,19 +65,7 @@ public class TokenizerMain{
 		catch( IOException e )
 		{
 			e.printStackTrace();
-		}
-		finally
-		{
-			if( modelIn != null )
-			{
-				try
-				{
-					modelIn.close();
-				}
-				catch( IOException e )
-				{
-				}
-			}
+			throw new Exception();
 		}
 		System.out.println( "\n-----\ndone" );
 	}
